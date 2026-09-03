@@ -1,18 +1,12 @@
 sample:
-  description: Hello World sample, the simplest Zephyr
-    application
-  name: hello world
+  description: LAN9250 SPI Ethernet DHCPv4 client with USB CDC-ACM console
+  name: rp2350 zephyr multicore
 common:
-  min_ram: 2
-  min_flash: 16
-  tags: introduction
-  integration_platforms:
-    - native_sim
-  harness: console
-  harness_config:
-    type: one_line
-    regex:
-      - "Hello World! (.*)"
+  min_ram: 32
+  min_flash: 64
+  tags: networking ethernet
+  platform_allow:
+    - rpi_pico2/rp2350a/m33
 tests:
-  sample.basic.helloworld:
-    tags: introduction
+  sample.net.dhcpv4_lan9250:
+    tags: networking ethernet
