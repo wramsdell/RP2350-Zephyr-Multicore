@@ -9,6 +9,13 @@ Microchip LAN9250 SPI Ethernet controller and runs a DHCPv4 client over it.
 The USB port is used as a CDC-ACM serial console/shell instead of a physical
 UART.
 
+It also demonstrates asymmetric multiprocessing on the RP2350: Core0
+(Zephyr) loads and launches independent bare-metal C code onto Core1 at
+boot, which blinks the onboard LED. A ``blink rate get|set <ms>`` shell
+command on Core0 controls the blink rate via an inter-core mailbox. See
+`THEORY_OF_OPERATION.md <THEORY_OF_OPERATION.md>`_ for the full source
+layout, memory partition, Core1 load sequence, and mailbox protocol.
+
 Hardware
 ********
 

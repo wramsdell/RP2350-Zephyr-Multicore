@@ -13,6 +13,9 @@ LOG_MODULE_REGISTER(net_dhcpv4_client_sample, LOG_LEVEL_DBG);
 #include <zephyr/device.h>
 #include <zephyr/net/phy.h>
 
+#include "core1_launch.h"
+#include "blink_shell.h"
+
 #define DHCP_OPTION_NTP (42)
 
 static uint8_t ntp_server[4];
@@ -85,6 +88,14 @@ struct phy_data {
 int main(void)
 {
 	LOG_INF("Run dhcpv4 client");
+
+	if (core1_launch()) {
+		LOG_ERR("Failed to launch core1");
+	}
+
+	if (blink_mbox_init()) {
+		LOG_ERR("Failed to init core1 mailbox");
+	}
 
 	net_mgmt_init_event_callback(&mgmt_cb, handler,
 				     NET_EVENT_IPV4_ADDR_ADD);

@@ -5,4 +5,11 @@ cmake_minimum_required(VERSION 3.20.0)
 find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 project(rp2350_zephyr_multicore)
 
-target_sources(app PRIVATE src/main.c)
+target_sources(app PRIVATE
+    src/main.c
+    src/core1_launch.c
+    src/blink_shell.c
+    src/core1_blob.c
+)
+
+include(cmake/core1.cmake)

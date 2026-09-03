@@ -39,6 +39,18 @@
 //    };
 };
 
+/* Reserve the top 128KB (2x64KB) of SRAM for the bare-metal core1 image at
+ * 0x20062000-0x20082000; Zephyr/core0 is confined to the bottom 392KB.
+ * CONFIG_SRAM_SIZE/CONFIG_SRAM_BASE_ADDRESS (and thus the linker RAM region
+ * and the RP2350 MPU SRAM_0 region) derive directly from this node's reg. */
+&sram0 {
+    reg = <0x20000000 DT_SIZE_K(392)>;
+};
+
+&mbox {
+    status = "okay";
+};
+
 / {
     chosen {
         zephyr,console = &cdc_acm_uart0;
