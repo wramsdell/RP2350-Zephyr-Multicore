@@ -1,12 +1,12 @@
 sample:
-  description: LAN9250 SPI Ethernet DHCPv4 client with USB CDC-ACM console
+  description: Bare-metal core1 LED blink demo with USB CDC-ACM console
   name: rp2350 zephyr multicore
 common:
-  min_ram: 32
-  min_flash: 64
-  tags: networking ethernet
+  min_ram: 16
+  min_flash: 32
+  tags: multicore
   platform_allow:
     - rpi_pico2/rp2350a/m33
 tests:
-  sample.net.dhcpv4_lan9250:
-    tags: networking ethernet
+  sample.multicore.blink:
+    tags: multicore

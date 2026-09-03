@@ -11,11 +11,10 @@ use to talk to each other.
 CMakeLists.txt                 Top-level app build; wires core1's build in
 cmake/core1.cmake              Cross-compiles + embeds the core1 image
 prj.conf                       Core0 (Zephyr) Kconfig
-rpi_pico2_rp2350a_m33.overlay  Devicetree: SRAM split, mbox, LAN9250, USB console
+rpi_pico2_rp2350a_m33.overlay  Devicetree: SRAM split, mbox, USB console
 
 src/                           Core0 (Zephyr) application sources
-  main.c                       Calls core1_launch() + blink_mbox_init(), then
-                                the existing DHCPv4 client demo
+  main.c                       Calls core1_launch() + blink_mbox_init()
   core1_launch.h / .c          PSM/SIO launch handshake that starts core1
   core1_blob.c                 const uint8_t[] holding core1's compiled image
                                 (via #include <core1_blob.bin.inc>, generated
